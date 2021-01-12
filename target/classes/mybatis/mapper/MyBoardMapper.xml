@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+	매퍼의 namespace속성
+		: 해당 매퍼파일을 호출하기 위해 정의한 인터페이스의
+		패키지를 포함한 풀경로를 기술한다. 해당 인터페이스는
+		컨트롤러와 Mapper(DAO)사이에서 중재자 역할을 하는
+		서비스 객체로 사용된다.
+	
+	id속성
+		: 실제 호출되는 함수명과 동일한 이름으로 기술한다.
+	resultType
+		: 쿼리 실행후 반환되는 값의 타입을 명시한다. 이때는
+		패키지명을 포함한 풀경로를 기술해야 한다.
+ -->
+<mapper namespace="mybatis.MybatisDAOImpl">
+	
+	<!-- 
+	select
+		: select문에 해당하는 결과를 반환한다. 아래와 같이
+		int인 경우에는 정수값을, DTO객체인 경우에는 해당 레코드를
+		저장한 List계열의 컬렉션으로 반환된다.
+	 -->
+	<select id="getTotalCount" resultType="int">
+		SELECT COUNT(*) from myboard
+	</select>
+	<!-- 
+		listPage(int s, int e) 이와 같이 추상메소드를 통해
+		해당 엘리먼트가 호출되면 매개변수 s, e는 순서대로
+		param1, param2로 전달되어 인파라미터 설정이 완료된다.
+	 -->
+	<select id="listPage" resultType="mybatis.MyBoardDTO">
+		SELECT * FROM (
+			SELECT Tb.*, rownum rNum FROM (
+				SELECT * FROM myboard ORDER BY idx DESC
+			) Tb
+		)
+		WHERE rNum BETWEEN #{param1} AND #{param2}
+	</select>
+
+
+</mapper>
