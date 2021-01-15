@@ -116,7 +116,7 @@ public class MybatisController {
 		return "07Mybatis/write";
 	}
 	//로그인 페이지
-	@RequestMapping
+	@RequestMapping("/mybatis/login.do")
 	public String login(Model model) {
 		return "07Mybatis/login";
 	}
