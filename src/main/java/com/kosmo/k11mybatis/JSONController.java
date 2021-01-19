@@ -91,7 +91,7 @@ public class JSONController {
 		System.out.println(sql);
 		//페이지번호 처리
 		String pagingImg =
-				PagingUtil.pagingImg(totalRecordCount, pageSize, blockPage, nowPage,
+				PagingUtil.pagingAjax(totalRecordCount, pageSize, blockPage, nowPage,
 					req.getContextPath()+"/mybatis/list.do?");
 		model.addAttribute("pagingImg", pagingImg);
 		

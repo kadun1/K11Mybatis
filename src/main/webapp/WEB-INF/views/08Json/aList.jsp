@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script>
 $(function(){
-	
+
 });
 function deleteRow(g_idx){
 	if(confirm('삭제할까요?')==true){
@@ -40,6 +40,27 @@ function reflash(){
 	*/
 	location.reload();
 }
+function paging(pNum){
+	$.ajax({
+		url:"./aList.do",
+		type : "get",
+		contentTyep : "text/html;charset:utf-8",
+		data:{nowPage:pNum},
+		dataType : "html",
+		success : function(d){
+			$('#boardHTML').html('');
+			$('#boardHTML')
+				.append('<div style="text-align:center;padding-top:50px;">')
+				.append('<img src="../images/ladgin02.gif">')
+				.append('</div>');
+			
+			$('#boardHTML').html(d);
+		},
+		error : function(e){
+			alert("실패"+e);
+		}
+	});
+}	
 </script>
 <!-- 글쓰기버튼 및 로그인/로그아웃 버튼 -->
 	<div class="text-right">
