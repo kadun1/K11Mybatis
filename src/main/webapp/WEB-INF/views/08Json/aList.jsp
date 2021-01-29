@@ -45,7 +45,7 @@ function paging(pNum){
 		url:"./aList.do",
 		type : "get",
 		contentTyep : "text/html;charset:utf-8",
-		data:{nowPage:pNum},
+		data:{"nowPage":pNum},
 		dataType : "html",
 		success : function(d){
 			$('#boardHTML').html('');

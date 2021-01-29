@@ -29,7 +29,7 @@ public interface MybatisDAOImpl {
 	public MyBoardDTO view(ParameterDTO parameterDTO);
 
 	/*
-	Mapper에서 updatem delete는 모두 정수형의 반환값이 있지만
+	Mapper에서 update, delete는 모두 정수형의 반환값이 있지만
 	필요없는 경우 사용하지 않아도 된다.
 	 */
 	public int modify(MyBoardDTO myBoardDTO);
